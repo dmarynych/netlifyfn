@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <form class="vgs-form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Input</label>
+        <input type="text" class="form-control input-field" aria-describedby="emailHelp" placeholder="Enter value">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <h5 class="token"></h5>
+  </div>
+
+  <script>
+    async function postData(url = '', data = {}) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      });
+      return await response.json(); // parses JSON response into native JavaScript objects
+    }
+
+    async function submit(e) {      
+      e.preventDefault();
+
+      const response = await postData('https://tntxzzcqvth.SANDBOX.verygoodproxy.com/.netlify/functions/fn', {
+        value: document.querySelector('.input-field').value
+      });
+      console.log('response', response);
+
+      document.querySelector('.token').innerHTML = `VGS alias created: ${response.value}`;
+    }
+
+    document.querySelector('.vgs-form').addEventListener('submit', submit);
+  </script>
+</body>
+</html>
