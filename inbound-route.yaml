@@ -1,0 +1,58 @@
+data:
+ -
+  attributes:
+   created_at: '2019-11-22T12:22:03'
+   destination_override_endpoint: 'https://netlifyfn.netlify.com'
+   entries:
+    -
+     id: 4fcbaa3b-05c7-463a-8a94-093cb4daf6e8
+     phase: REQUEST
+     operation: REDACT
+     token_manager: PERSISTENT
+     public_token_generator: UUID
+     transformer: JSON_PATH
+     transformer_config:
+      - $.value
+     transformer_config_map: null
+     operations: null
+     targets:
+      - body
+     id_selector: null
+     classifiers: {}
+     config:
+      rules:
+       -
+        operator: equals
+        type: string
+        value: /.netlify/functions/fn
+        field: PathInfo
+        condition: null
+        expression:
+         field: PathInfo
+         type: string
+         operator: equals
+         values: [/.netlify/functions/fn]
+       -
+        operator: equals
+        type: string
+        value: application/json
+        field: ContentType
+        condition: null
+        expression:
+         field: ContentType
+         type: string
+         operator: equals
+         values: [application/json]
+      condition: AND
+   host_endpoint: '(.*)\.verygoodproxy\.com'
+   id: cf757815-aa2d-4498-9313-dc4b8a40cba3
+   ordinal: null
+   port: 0
+   protocol: http
+   source_endpoint: '*'
+   tags:
+    name: 'https://netlifyfn.netlify.com-lawn-green-encyclopedia'
+   updated_at: '2019-11-22T12:37:01'
+  id: cf757815-aa2d-4498-9313-dc4b8a40cba3
+  type: rule_chain
+version: 1
